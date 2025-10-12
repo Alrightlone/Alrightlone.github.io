@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <style>
+        /* 我上次提供给您的CSS代码 */
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .publication-entry {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .publication-teaser {
+            flex-shrink: 0;
+            width: 30%;
+            margin-right: 24px;
+        }
+
+        .publication-teaser .one { position: relative; width: 100%; }
+        .publication-teaser .two { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: opacity .4s ease-in-out; }
+
+        .publication-details {
+            flex-grow: 1;
+        }
+
+        /* --- 关键部分：响应式规则 --- */
+        @media (max-width: 768px) {
+            .publication-entry {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .publication-teaser {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Publication Test</h1>
+
+    <div class="publication-entry">
+      <div class="publication-teaser">
+        <div class="one">
+          <div class="two" id='bog_image'>
+            <img src='https://via.placeholder.com/400x250/FF0000/FFFFFF?text=VIDEO' width="100%">
+          </div>
+          <img src='https://via.placeholder.com/400x250/0000FF/FFFFFF?text=IMAGE' width="100%">
+        </div>
+      </div>
+      <div class="publication-details">
+        <a href="#"><span class="papertitle">OBS-Diff: Accurate Pruning For Diffusion Models in One-Shot</span></a>
+        <br><b>Junhan Zhu</b>, <a href="#">Hesong Wang</a>, <a href="#">Mingluo Su</a>, <a href="#">Zefang Wang</a>, <a href="#">Huan Wang*</a>
+        <br><em>Preprint</em>, 2025
+        <br><a href="#">project page</a> / <a href="#">code</a> / <a href="#">arXiv</a>
+      </div>
+    </div>
+
+</body>
+</html>
