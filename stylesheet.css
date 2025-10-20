@@ -146,31 +146,65 @@ span.highlight {
 /* ========================================================= */
 
 /* 当屏幕宽度小于等于 768px 时生效 */
+/* ========================================================= */
+/* ===== 手机端表格布局强制换行 (最小化修改方案) ===== */
+/* ========================================================= */
+
+/* 当屏幕宽度小于等于 768px 时生效 (您设定的值很大，所以会一直生效) */
+/* ========================================================= */
+/* ===== 手机端表格布局强制换行 (已修复版本) ===== */
+/* ========================================================= */
+
+/* 当屏幕宽度小于等于 768px (或您设定的值) 时生效 */
+/* 手机端（或窄屏）样式 */
 @media (max-width: 768px) {
 
-  /* 选择页面主体部分宽度为100%的表格内的 tr 和 td。
-    这能比较精确地定位到您用来布局的表格，而不影响其他表格。
-  */
+  /* 把表格单元格竖排显示（保留你原来的想法） */
   table[style*="width:100%"] > tbody > tr > td {
-    display: block;  /* 关键：将单元格从“表格单元”变为“块级元素”，使其能够独占一行 */
-    width: 95% !important; /* 关键：强制宽度为100%（或稍小以留边距），覆盖掉内联样式里的宽度 */
-    padding-left: 2.5%; /* 调整一下边距，让内容居中一些 */
+    display: block;
+    width: 95% !important;
+    padding-left: 2.5%;
     padding-right: 2.5%;
+    box-sizing: border-box;
   }
 
-  /* 单独调整一下头像图片，让它在手机上居中且不要太大 */
-  td[style*="width:37%"] {
-    text-align: center; /* 图片容器居中 */
-    padding-bottom: 20px; /* 和下面的文字拉开一点距离 */
+  /* 头像容器：让 <a> 变成块级并居中；限制最大宽度，图片充满容器 */
+  .profile-photo-cell a {
+    display: block;        /* 关键：让 margin:auto 生效 */
+    margin: 0 auto;        /* 真正实现水平居中 */
+    width: 100%;            /* 你可以改成 40% / 60% 根据需要 */
+    max-width: 200px;      /* 防止头像在大手机上太大 */
+    text-align: center;
   }
 
-  td[style*="width:37%"] img {
-    width: 50% !important; /* 头像宽度为容器的50% */
-    max-width: 200px;  /* 最大宽度不超过200px */
+  .profile-photo-cell img {
+    display: block;        /* 消除行内间隙，帮助居中 */
+    width: 100% !important;/* 充满上面的 a 容器 */
+    height: auto !important;
+    border-radius: 50%;    /* 确保圆形 */
+    object-fit: cover;     /* 保持裁切表现 */
   }
 
-  /* 调整研究项目部分的图片/视频容器 */
+  /* Research 部分左右单元格强制顶部对齐，避免竖直居中造成的大间距 */
+  td[style*="width:45%"],
+  td[style*="width:54%"],
+  .research-left, .research-right {
+    vertical-align: top !important;
+  }
+
+  /* 给左侧（图片一栏）加一点底部间距，避免与下面内容太贴 */
   td[style*="width:45%"] {
-    padding-bottom: 20px;
+    padding-bottom: 15px !important;
+  }
+
+  /* 保证 .one 和 .two 的响应式表现 */
+  .one, .two {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .one > img {
+    width: 100% !important;
+    height: auto !important;
   }
 }
