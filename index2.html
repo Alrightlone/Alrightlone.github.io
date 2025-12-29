@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junhan Zhu | System Online</title>
+    <meta name="description" content="Academic Portfolio of Junhan Zhu">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
+
+    <style>
+        /* --- CSS Variables --- */
+        :root {
+            /* Dark Mode */
+            --bg-color: #050505;
+            --card-bg: rgba(20, 20, 20, 0.7);
+            --primary: #00f3ff;       /* Neon Cyan */
+            --secondary: #bc13fe;     /* Neon Purple */
+            --text-main: #e0e0e0;
+            --text-dim: #888;
+            --border-color: #333;
+            --code-key: #9cdcfe;
+            --code-str: #ce9178;
+            --code-bg: #111;
+            --status-online: #0f0;
+            --font-stack: 'JetBrains Mono', monospace;
+        }
+
+        [data-theme="light"] {
+            /* Light Mode */
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --primary: #0056b3;
+            --secondary: #d63384;
+            --text-main: #1a1a1a;
+            --text-dim: #555;
+            --border-color: #ddd;
+            --code-key: #005cc5;
+            --code-str: #a31515;
+            --code-bg: #f0f0f0;
+            --status-online: #008000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-stack);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Canvas Background --- */
+        #neural-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; opacity: 0.4;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            position: relative;
+        }
+        a:hover { text-decoration: underline; }
+
+        /* --- Status Bar --- */
+        .status-bar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .status-online { color: var(--status-online); font-weight: bold; text-shadow: 0 0 5px var(--status-online); }
+        .theme-toggle {
+            background: none; border: 1px solid var(--primary); color: var(--primary);
+            padding: 2px 10px; cursor: pointer; font-family: var(--font-stack);
+            font-size: 0.8rem; border-radius: 4px;
+        }
+        .theme-toggle:hover { background: var(--primary); color: var(--bg-color); }
+
+        /* --- Header / Hero --- */
+        header {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+        }
+
+        .hero-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            width: 100%;
+        }
+
+        .hero-text { flex: 1; }
+
+        .hero-avatar-area { flex-shrink: 0; position: relative; }
+
+        /* Static Avatar Frame (No Rotation) */
+        .avatar-scan {
+            width: 280px; height: 280px;
+            position: relative;
+            border-radius: 50%;
+            padding: 5px;
+            /* Static gradient border */
+            background: linear-gradient(135deg, var(--primary), #333, var(--secondary)); 
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .avatar-img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+            position: relative; z-index: 2;
+            filter: grayscale(10%);
+            transition: 0.5s;
+        }
+        .avatar-img:hover { filter: grayscale(0%); transform: scale(1.02); }
+
+        .hero-glitch {
+            font-size: 3.5rem; font-weight: 700; color: var(--text-main);
+            line-height: 1.1; margin-bottom: 5px;
+        }
+
+        .hero-subtitle { font-size: 1.3rem; color: var(--primary); margin-top: 10px; }
+
+        /* Social Icons in Header */
+        .hero-social { margin-top: 15px; margin-bottom: 20px; }
+        .hero-social a {
+            font-size: 1.5rem; margin-right: 15px; color: var(--text-dim);
+            transition: all 0.3s ease; display: inline-block;
+        }
+        .hero-social a:hover { color: var(--secondary); transform: translateY(-3px); }
+
+        .typing-container {
+            margin-top: 10px; min-height: 60px;
+            border-left: 3px solid var(--secondary);
+            padding-left: 15px; color: var(--text-dim);
+        }
+        .cursor {
+            display: inline-block; width: 10px; height: 1.2em;
+            background-color: var(--primary); animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        .cta-box {
+            margin-top: 25px; padding: 15px;
+            border: 1px solid var(--secondary);
+            background: rgba(188, 19, 254, 0.05);
+            font-size: 0.9rem;
+        }
+        .cta-box strong { color: var(--secondary); }
+
+        /* --- Sections --- */
+        section {
+            padding: 50px 0; opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        .section-title {
+            font-size: 1.8rem; margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block; padding-right: 20px;
+            text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        /* --- News Logs --- */
+        .log-entry {
+            border-left: 1px solid var(--border-color);
+            padding-left: 20px; margin-bottom: 20px;
+            position: relative;
+        }
+        .log-entry::before {
+            content: '>'; position: absolute; left: -6px; top: 0;
+            color: var(--secondary); background: var(--bg-color);
+        }
+        
+        /* New styling for log badges */
+        .log-badge {
+            font-family: var(--font-stack);
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        .log-badge.news-flash {
+            color: #fff;
+            background-color: #e60073; /* Vivid Pink/Red for impact */
+            padding: 2px 6px;
+            border-radius: 2px;
+            text-shadow: 0 0 5px #e60073;
+        }
+
+        .log-date { color: var(--secondary); font-size: 0.85rem; margin-bottom: 5px; }
+
+        /* --- Education & Info Cards --- */
+        .info-card {
+            display: flex; align-items: center; gap: 20px;
+            margin-bottom: 25px; padding: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color); transition: 0.3s;
+        }
+        .info-card:hover { border-color: var(--primary); transform: translateX(5px); }
+        
+        .info-logo {
+            width: 70px; height: 70px; flex-shrink: 0;
+            background: #fff; border-radius: 8px; padding: 5px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .info-logo img { max-width: 100%; max-height: 100%; }
+
+        .info-content { flex-grow: 1; }
+        .info-date { font-size: 0.85rem; color: var(--secondary); margin-bottom: 4px; }
+        .info-title { font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
+        .info-sub { font-size: 0.95rem; color: var(--text-dim); }
+        .info-badge {
+            display: inline-block; background: rgba(0, 243, 255, 0.1);
+            color: var(--primary); padding: 2px 8px; border-radius: 4px;
+            font-size: 0.75rem; margin-top: 5px; border: 1px solid var(--primary);
+        }
+        [data-theme="light"] .info-badge { background: rgba(0, 86, 179, 0.1); }
+
+        .json-block {
+            background: var(--code-bg); padding: 20px;
+            border-radius: 5px; border: 1px solid var(--border-color);
+            font-size: 0.9rem; overflow-x: auto; font-family: var(--font-stack);
+        }
+        .key { color: var(--code-key); } .string { color: var(--code-str); }
+
+        /* --- Publications --- */
+        .pub-card {
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            padding: 25px; margin-bottom: 30px; display: flex;
+            gap: 25px; transition: 0.3s; align-items: flex-start;
+        }
+        .pub-card:hover { border-color: var(--primary); box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+
+        .pub-visual {
+            flex-shrink: 0; width: 220px;
+            border: 1px solid var(--border-color); background: #000; padding: 5px;
+        }
+        .pub-visual img {
+            width: 100%; height: auto; display: block; object-fit: contain;
+        }
+
+        .pub-content h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--text-main); }
+        
+        /* Author Links Styling */
+        .pub-authors { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 8px; }
+        .pub-authors a { color: var(--text-dim); border-bottom: 1px dotted var(--text-dim); text-decoration: none; }
+        .pub-authors a:hover { color: var(--secondary); border-color: var(--secondary); }
+        .pub-authors strong { color: var(--text-main); border-bottom: none; }
+
+        .status-badge {
+            display: inline-block; padding: 3px 8px; font-size: 0.7rem;
+            font-weight: bold; text-transform: uppercase; margin-bottom: 12px;
+            border-radius: 2px;
+        }
+        .status-badge.open-source { background: rgba(40, 167, 69, 0.2); color: #28a745; border: 1px solid #28a745; }
+        .status-badge.preprint { background: rgba(255, 193, 7, 0.2); color: #ffc107; border: 1px solid #ffc107; }
+        [data-theme="light"] .status-badge.preprint { color: #d39e00; border-color: #d39e00; }
+        [data-theme="light"] .status-badge.open-source { color: #1e7e34; border-color: #1e7e34; }
+
+        .links-row { margin-top: 15px; }
+        .links-row a { margin-right: 20px; font-size: 0.9rem; color: var(--text-dim); }
+        .links-row a:hover { color: var(--primary); }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center; padding: 50px 0; font-size: 0.8rem;
+            color: var(--text-dim); border-top: 1px solid var(--border-color); margin-top: 50px;
+        }
+        .social-links { margin-bottom: 20px; }
+        .social-links a { font-size: 1.5rem; margin: 0 12px; color: var(--text-dim); }
+        .social-links a:hover { color: var(--primary); transform: scale(1.1); display:inline-block;}
+
+        /* --- Animations --- */
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero-wrapper { flex-direction: column-reverse; text-align: center; gap: 30px; }
+            .hero-avatar-area { margin-bottom: 20px; }
+            .avatar-scan { width: 200px; height: 200px; margin: 0 auto; }
+            .pub-card { flex-direction: column; }
+            .pub-visual { width: 100%; max-width: 300px; margin: 0 auto 20px auto; }
+            .info-card { flex-direction: column; text-align: center; }
+            .hero-glitch { font-size: 2.5rem; }
+            .hero-social { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="neural-canvas"></canvas>
+
+    <div class="status-bar">
+        <div style="display:flex; gap:15px;">
+            <span><i class="fas fa-terminal"></i> Junhan_Zhu</span>
+            <span style="display:none;" class="desktop-show"> | Westlake_Univ</span>
+        </div>
+        
+        <div style="display:flex; gap:15px; align-items:center;">
+            <span class="status-online">● ONLINE</span>
+            <button class="theme-toggle" id="themeBtn" title="Toggle Theme">
+                <i class="fas fa-sun"></i> / <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <header>
+            <div class="hero-wrapper">
+                <div class="hero-text">
+                    <h1 class="hero-glitch">Junhan Zhu</h1>
+                    <div class="hero-subtitle">
+                        &lt; Junior Undergraduate From Westlake University &gt;
+                    </div>
+
+                    <div class="hero-social">
+                        <a href="https://scholar.google.com/citations?hl=en&user=kWEQRU0AAAAJ" title="Google Scholar"><i class="ai ai-google-scholar-square"></i></a>
+                        <a href="https://github.com/Alrightlone" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/junhan-zhu-005313361/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="work/JunhanZhu_CV_v8.pdf" title="CV"><i class="ai ai-cv"></i></a>
+                        <a href="https://x.com/Alright_lone" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    
+                    <div class="typing-container">
+                        <span id="typewriter"></span><span class="cursor"></span>
+                    </div>
+
+                    <div class="cta-box">
+                        <i class="fa fa-exclamation-triangle" style="color:var(--secondary)"></i> 
+                        <strong>SYSTEM ALERT:</strong> Actively seeking <strong>2027 Fall PhD opportunities</strong> in Computer Vision & Efficient AI.
+                    </div>
+
+                    <div style="margin-top: 30px; display:flex; gap:20px; flex-wrap:wrap;">
+                        <a href="https://alrightlone.github.io/Lonely-Zone/" target="_blank" style="border-bottom: 2px solid var(--secondary);">
+                            <i class="fas fa-rss"></i> Blog "Lonely Zone"
+                        </a>
+                        <a href="mailto:zhujunhan@westlake.edu.cn">
+                            <i class="fas fa-paper-plane"></i> Initialize Contact
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-avatar-area">
+                    <div class="avatar-scan">
+                        <img src="images/images/JunhanZhu2.png" alt="Junhan Zhu" class="avatar-img">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="news">
+            <h2 class="section-title">01_System_Logs</h2>
+            
+            <div class="log-entry">
+                <div class="log-date">[2025-12]</div>
+                <div>
+                    <span class="log-badge news-flash">[NEWS!]</span>
+                    Launched personal blog <a href="https://alrightlone.github.io/Lonely-Zone/">"Lonely Zone"</a>. Syncing thoughts on research.
+                </div>
+            </div>
+            
+            <div class="log-entry">
+                <div class="log-date">[2025-10]</div>
+                <div>
+                    <span class="log-badge">[AWARD]</span>
+                    Awarded "Outstanding Bachelor's Student" from Westlake University.
+                </div>
+            </div>
+
+            <div class="log-entry">
+                <div class="log-date">[2025-10]</div>
+                <div>
+                    <span class="log-badge">[PAPER]</span>
+                    "OBS-Diff" released on Arxiv. First first-author work uploaded.
+                </div>
+            </div>
+
+            <div class="log-entry">
+                <div class="log-date">[2025-05]</div>
+                <div>
+                    <span class="log-badge">[PROJECT]</span>
+                    Released SparAlloc, a modular benchmark toolkit for sparsity allocation in LLM pruning.
+                </div>
+            </div>
+
+            <div class="log-entry">
+                <div class="log-date">[2025-03]</div>
+                <div>
+                    <span class="log-badge">[VISITING]</span>
+                    Started visiting at ENCODE Lab at Westlake University, supervised by Prof. Huan Wang.
+                </div>
+            </div>
+
+            <div class="log-entry">
+                <div class="log-date">[2023-07]</div>
+                <div>
+                    <span class="log-badge">[Admission]</span>
+                    Admitted to Westlake University, skipping the final year of high school.
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">02_Knowledge_Base</h2>
+
+            <div class="info-card">
+                <div class="info-logo">
+                    <img src="images/westlake.png" alt="Westlake University">
+                </div>
+                <div class="info-content">
+                    <div class="info-date">Jul 2023 - Present (Expected 2027)</div>
+                    <div class="info-title">Westlake University (Undergraduate)</div>
+                    <div class="info-sub">B.Eng in Electronic & Information Engineering</div>
+                    
+                    <div style="margin-top:8px;">
+                        <span class="info-badge">GPA: 4.04 / 4.30 (Rank 1)</span>
+                        <span class="info-badge">Admitted Skipping Final Year of High School</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="json-block" style="margin-top: 20px;">
+                <span style="color: var(--secondary);">const</span> <span style="color: var(--primary);">research_interests</span> = [<br>
+                &nbsp;&nbsp;<span class="string">"Efficient AI"</span>,<br>
+                &nbsp;&nbsp;<span class="string">"Generative AI"</span>,<br>
+                &nbsp;&nbsp;<span class="string">"Model Compression"</span>,<br>
+                &nbsp;&nbsp;<span class="string">"Computer Vision"</span><br>
+                ];
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2 class="section-title">03_Research_Modules</h2>
+
+            <div class="pub-card">
+                <div class="pub-visual">
+                    <img src="images/OBS-Diff.jpg" alt="OBS-Diff">
+                </div>
+                <div class="pub-content">
+                    <span class="status-badge preprint"><i class="fas fa-file-alt"></i> Preprint / Arxiv</span>
+                    
+                    <h3>OBS-Diff: Accurate Pruning For Diffusion Models in One-Shot</h3>
+                    <div class="pub-authors">
+                        <strong>Junhan Zhu</strong>, 
+                        <a href="https://viridisgreen.github.io/" target="_blank">Hesong Wang</a>, 
+                        <a href="https://github.com/sunshine-0903" target="_blank">Mingluo Su</a>, 
+                        <a href="https://github.com/aden9460" target="_blank">Zefang Wang</a>, 
+                        <a href="https://huanwang.tech/" target="_blank">Huan Wang*</a>
+                    </div>
+                    <p style="font-size: 0.85rem; margin-bottom: 10px; color: var(--text-dim);">
+                        Proposing the first training-free, one-shot pruning framework for diffusion models using Optimal Brain Surgeon.
+                    </p>
+                    <div class="links-row">
+                        <a href="https://arxiv.org/abs/2510.06751"><i class="ai ai-arxiv"></i> Arxiv</a>
+                        <a href="https://github.com/Alrightlone/OBS-Diff"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://alrightlone.github.io/OBS-Diff-Webpage/"><i class="fas fa-globe"></i> Project Page</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <div class="pub-visual">
+                    <img src="images/SparAlloc.jpg" alt="SparAlloc">
+                </div>
+                <div class="pub-content">
+                    <span class="status-badge open-source"><i class="fas fa-code-branch"></i> Open Source Tool</span>
+                    
+                    <h3>SparAlloc: Modular Framework for LLM Pruning</h3>
+                    <div class="pub-authors">
+                        <strong>Junhan Zhu</strong>
+                    </div>
+                    <p style="font-size: 0.85rem; margin-bottom: 10px; color: var(--text-dim);">
+                        A simple and modular benchmark toolkit for decoupled sparsity allocation in layerwise pruning for LLMs.
+                    </p>
+                    <div class="links-row">
+                        <a href="https://github.com/Alrightlone/SparAlloc"><i class="fab fa-github"></i> GitHub Repository</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">04_Execution_Trace</h2>
+            
+            <div class="info-card">
+                <div class="info-logo">
+                    <img src="images/images/WU.png" alt="Encode Lab">
+                </div>
+                <div class="info-content">
+                    <div class="info-date">Mar 2025 - Nov 2025</div>
+                    <div class="info-title">Visiting Student @ ENCODE Lab</div>
+                    <div class="info-sub">Supervisor: <a href="https://huanwang.tech/" target="_blank">Assistant Prof. Huan Wang</a></div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-logo">
+                    <img src="images/images/WU.png" alt="TGAI Lab">
+                </div>
+                <div class="info-content">
+                    <div class="info-date">Jul 2024 - Jan 2025</div>
+                    <div class="info-title">Visiting Student @ TGAI Lab</div>
+                    <div class="info-sub">Supervisor: <a href="https://en.westlake.edu.cn/faculty/yaochu-jin.html" target="_blank">Chair Prof. Yaochu Jin</a></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="awards">
+            <h2 class="section-title">05_Honors_Buffer</h2>
+            <div style="border: 1px dashed var(--border-color); padding: 25px; border-radius: 5px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+                    <span style="color:var(--text-main);">Outstanding Bachelor's Student</span>
+                    <span style="color:var(--primary); font-weight:bold;">2025</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+                    <span style="color:var(--text-main);">Outstanding Undergraduate Scholarship</span>
+                    <span style="color:var(--primary); font-weight:bold;">2024, 25</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+                    <span style="color:var(--text-main);">Innovation Award (Westlake Univ)</span>
+                    <span style="color:var(--primary); font-weight:bold;">2024, 25</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="color:var(--text-main);">Hongyi Scholarship (Social Activity)</span>
+                    <span style="color:var(--primary); font-weight:bold;">2024</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://scholar.google.com/citations?hl=en&user=kWEQRU0AAAAJ"><i class="ai ai-google-scholar-square"></i></a>
+                <a href="https://github.com/Alrightlone"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/junhan-zhu-005313361/"><i class="fab fa-linkedin"></i></a>
+                <a href="work/JunhanZhu_CV_v8.pdf"><i class="ai ai-cv"></i></a>
+                <a href="https://x.com/Alright_lone"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>SYSTEM TERMINATED. EOF.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- 1. Theme Toggle ---
+        const themeBtn = document.getElementById('themeBtn');
+        const htmlElement = document.documentElement;
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            updateCanvasColors();
+        });
+
+        // --- 2. Typing Effect ---
+        const textToType = "Executing research in Efficient AI...^500\nScanning Computer Vision protocols...^300\nOptimizing Neural Networks...^300\nWelcome to my digital workspace.";
+        const typeContainer = document.getElementById('typewriter');
+        
+        function typeWriter() {
+            let i = 0;
+            let txt = '';
+            const cleanText = textToType.replace(/\^(\d+)/g, ""); 
+            
+            function type() {
+                if (i < cleanText.length) {
+                    let char = cleanText.charAt(i);
+                    txt += (char === '\n') ? '<br>' : char;
+                    typeContainer.innerHTML = txt;
+                    i++;
+                    setTimeout(type, 40);
+                }
+            }
+            type();
+        }
+
+        // --- 3. Neural Background ---
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let pColor, lColorPrefix;
+
+        function updateCanvasColors() {
+            const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                pColor = 'rgba(0, 243, 255, 0.5)';
+                lColorPrefix = 'rgba(0, 243, 255,';
+            } else {
+                pColor = 'rgba(0, 86, 179, 0.5)';
+                lColorPrefix = 'rgba(0, 86, 179,';
+            }
+        }
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = pColor;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(window.innerWidth / 10, 80);
+            for (let i = 0; i < count; i++) { particles.push(new Particle()); }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        ctx.strokeStyle = `${lColorPrefix} ${1 - dist/150})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+
+        // Init
+        window.addEventListener('resize', () => { resize(); initParticles(); });
+        resize();
+        updateCanvasColors();
+        initParticles();
+        animate();
+        setTimeout(typeWriter, 800);
+
+    </script>
+</body>
+</html>
