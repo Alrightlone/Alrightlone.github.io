@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junhan Zhu | Westlake University</title>
+    <meta name="description" content="Academic Homepage of Junhan Zhu">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <style>
+        :root {
+            /* Light Theme Variables */
+            --bg-color: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --accent-color: #2563eb; /* Royal Blue */
+            --accent-hover: #1d4ed8;
+            --card-bg: #f9fafb;
+            --border-color: #e5e7eb;
+            --tag-bg: #dbeafe;
+            --tag-text: #1e40af;
+            --highlight-bg: #fef3c7;
+            --highlight-text: #92400e;
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme Variables */
+            --bg-color: #111827;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent-color: #60a5fa;
+            --accent-hover: #93c5fd;
+            --card-bg: #1f2937;
+            --border-color: #374151;
+            --tag-bg: #1e3a8a;
+            --tag-text: #dbeafe;
+            --highlight-bg: #451a03;
+            --highlight-text: #fcd34d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--accent-hover);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        nav a {
+            color: var(--text-muted);
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        /* --- Header / Bio --- */
+        .header-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .bio-text h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .bio-text p {
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .phd-alert {
+            display: inline-block;
+            background-color: var(--highlight-bg);
+            color: var(--highlight-text);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(251, 191, 36, 0.4);
+        }
+
+        .avatar-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--card-bg);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.2s;
+        }
+
+        .social-icon:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* --- Section Styling --- */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        /* --- News --- */
+        .news-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .news-date {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            min-width: 90px;
+            color: var(--text-muted);
+        }
+
+        /* --- Publications --- */
+        .pub-item {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .pub-img-wrapper {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .pub-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .pub-img:hover {
+            transform: scale(1.03);
+        }
+
+        .pub-content .title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-main);
+            display: block;
+        }
+        
+        .pub-content .title:hover {
+            color: var(--accent-color);
+        }
+
+        .pub-content .authors {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-content .venue {
+            font-style: italic;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag-badge {
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+
+        .links-row {
+            display: flex;
+            gap: 10px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .links-row a {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* --- Education & Experience --- */
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 6px;
+            background: #fff;
+            padding: 2px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .timeline-content .sub {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .gpa-tag {
+            display: inline-block;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .bio-text { order: 2; }
+            .avatar-wrapper { order: 1; margin-bottom: 1rem; }
+            .social-links { justify-content: center; }
+            .pub-item { grid-template-columns: 1fr; }
+            .pub-img-wrapper { max-width: 100%; margin-bottom: 1rem; }
+            .news-date { min-width: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <nav>
+            <a href="#about">About</a>
+            <a href="#news">News</a>
+            <a href="#publications">Publications</a>
+            <a href="#misc">Misc</a>
+            <div class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </div>
+        </nav>
+
+        <header id="about" class="header-grid">
+            <div class="bio-text">
+                <h1>Junhan Zhu <span style="font-size: 0.5em; vertical-align: middle; opacity: 0.6;">(诸俊涵)</span></h1>
+                
+                <div class="phd-alert">
+                    <i class="fas fa-bullhorn"></i> Actively seeking PhD opportunities for Fall 2027
+                </div>
+
+                <p>
+                    I am a third-year undergraduate student at <a href="https://en.westlake.edu.cn/">Westlake University</a>, majoring in Electrical and Information Engineering. 
+                    I maintain a <b>GPA of 4.04/4.3</b>, ranking <b>1st</b> in my cohort.
+                </p>
+                <p>
+                    My research interests lie in <b>Efficient AI</b>, <b>Computer Vision</b>, and <b>Generative AI</b>. 
+                    I focus on model compression (pruning/sparsity) to make large-scale diffusion models and LLMs more accessible and efficient.
+                    Currently, I am a visiting student at ENCODE Lab, advised by Prof. <a href="https://huanwang.tech/">Huan Wang</a>.
+                </p>
+                
+                <div class="social-links">
+                    <a href="mailto:zhujunhan@westlake.edu.cn" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=kWEQRU0AAAAJ" target="_blank" class="social-icon" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+                    <a href="https://github.com/Alrightlone" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/Alright_lone" target="_blank" class="social-icon" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="work/JunhanZhu_CV_v8.pdf" target="_blank" class="social-icon" title="CV"><i class="ai ai-cv"></i></a>
+                    <a href="https://alrightlone.github.io/Lonely-Zone/" target="_blank" class="social-icon" title="Blog"><i class="fas fa-pen-fancy"></i></a>
+                </div>
+            </div>
+            
+            <div class="avatar-wrapper">
+                <img src="images/JunhanZhu2.png" alt="Junhan Zhu" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=Junhan+Zhu&background=random&size=256'">
+            </div>
+        </header>
+
+        <section id="news">
+            <h2 class="section-title">News</h2>
+            <div class="news-list">
+                <div class="news-item">
+                    <div class="news-date">Dec 2025</div>
+                    <div>Launched my personal blog, <b>"Lonely Zone"</b>. <a href="https://alrightlone.github.io/Lonely-Zone/">[Link]</a></div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">Oct 2025</div>
+                    <div>Awarded the <b>Outstanding Bachelor's Student</b> at Westlake University.</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">Oct 2025</div>
+                    <div>Released <b>OBS-Diff</b> (Arxiv), my first paper as a leading author! It proposes accurate pruning for diffusion models in one-shot.</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">May 2025</div>
+                    <div>Released <b>SparAlloc</b>, a modular benchmark/toolkit for LLM pruning.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2 class="section-title">Selected Publications</h2>
+            
+            <div class="pub-item">
+                <div class="pub-img-wrapper">
+                    <img src="images/OBS-Diff.jpg" alt="OBS-Diff Teaser" class="pub-img" onerror="this.src='https://placehold.co/400x300?text=OBS-Diff'">
+                </div>
+                <div class="pub-content">
+                    <a href="https://arxiv.org/abs/2510.06751" class="title">OBS-Diff: Accurate Pruning For Diffusion Models in One-Shot</a>
+                    <div class="authors">
+                        <strong>Junhan Zhu</strong>, Hesong Wang, Mingluo Su, Zefang Wang, Huan Wang*
+                    </div>
+                    <div class="venue">
+                        Preprint, 2025 <span class="tag-badge">First Author</span>
+                    </div>
+                    <p class="description">
+                        We propose the first training-free, one-shot pruning framework for diffusion models using a novel timestep-aware Hessian construction, achieving SOTA performance across diverse architectures.
+                    </p>
+                    <div class="links-row">
+                        <a href="https://arxiv.org/abs/2510.06751"><i class="ai ai-arxiv"></i> Arxiv</a>
+                        <a href="https://github.com/Alrightlone/OBS-Diff"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://alrightlone.github.io/OBS-Diff-Webpage/"><i class="fas fa-globe"></i> Project Page</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-img-wrapper">
+                    <img src="images/prime.jpg" alt="CR-Diff Teaser" class="pub-img" onerror="this.src='https://placehold.co/400x300?text=CR-Diff'">
+                </div>
+                <div class="pub-content">
+                    <span class="title">Cross-Resolution Diffusion Models via Network Pruning</span>
+                    <div class="authors">
+                        Jiaxuan Ren<sup>†</sup>, <strong>Junhan Zhu</strong><sup>†</sup>, Huan Wang*
+                    </div>
+                    <div class="venue">
+                        Under Review <span class="tag-badge">Co-First Author</span>
+                    </div>
+                    <p class="description">
+                        Introducing CR-Diff, a framework that repurposes network pruning to "purify" models by removing adverse weights that cause degradation at non-default resolutions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-img-wrapper">
+                    <img src="images/SparAlloc.jpg" alt="SparAlloc Teaser" class="pub-img" onerror="this.src='https://placehold.co/400x300?text=SparAlloc'">
+                </div>
+                <div class="pub-content">
+                    <a href="https://github.com/Alrightlone/SparAlloc" class="title">SparAlloc: Modular Framework for LLM Sparsity Allocation</a>
+                    <div class="authors">
+                        <strong>Junhan Zhu</strong>
+                    </div>
+                    <div class="venue">
+                        Open Source Project
+                    </div>
+                    <p class="description">
+                        A modular benchmark toolkit for decoupled sparsity allocation in layerwise pruning for LLMs, enabling fair comparison of algorithms.
+                    </p>
+                    <div class="links-row">
+                        <a href="https://github.com/Alrightlone/SparAlloc"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="misc" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            
+            <div class="education">
+                <h2 class="section-title">Education</h2>
+                <div class="timeline-item">
+                    <img src="images/westlake.png" alt="WU Logo" class="timeline-logo" onerror="this.src='https://placehold.co/100?text=WU'">
+                    <div class="timeline-content">
+                        <h3>Westlake University</h3>
+                        <div class="sub">B.Eng in Electronic & Info. Eng.</div>
+                        <div class="sub">2023 - 2027 (Expected)</div>
+                        <div style="margin-top: 5px;">
+                            <span class="gpa-tag">GPA: 4.04 / 4.3</span>
+                            <span class="gpa-tag">Rank 1 / Cohort</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="awards">
+                <h2 class="section-title">Honors & Awards</h2>
+                <ul style="list-style: none; padding-left: 0.5rem; border-left: 2px solid var(--border-color);">
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1rem;">
+                        <span style="font-weight: 600;">Outstanding Bachelor's Student</span> (2025)
+                    </li>
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1rem;">
+                        <span style="font-weight: 600;">Outstanding Undergraduate Scholarship</span> (2024, 2025)
+                        <br><span style="font-size: 0.85rem; color: var(--text-muted);">Top merit-based scholarship</span>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1rem;">
+                        <span style="font-weight: 600;">Innovation Award</span> (2024, 2025)
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Research Experience</h2>
+            
+            <div class="timeline-item">
+                <img src="images/westlake.png" class="timeline-logo" onerror="this.src='https://placehold.co/100?text=Lab'">
+                <div class="timeline-content">
+                    <h3>ENCODE Lab, Westlake University</h3>
+                    <div class="sub">Mar 2025 - Present | Advisor: Prof. Huan Wang</div>
+                    <p style="font-size: 0.9rem;">
+                        Research on Efficient AI, specifically pruning for Diffusion Models and LLMs. Developed OBS-Diff.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <img src="images/westlake.png" class="timeline-logo" onerror="this.src='https://placehold.co/100?text=Lab'">
+                <div class="timeline-content">
+                    <h3>TGAI Lab, Westlake University</h3>
+                    <div class="sub">Jul 2024 - Jan 2025 | Advisor: Prof. Yaochu Jin</div>
+                    <p style="font-size: 0.9rem;">
+                        Explored evolutionary algorithms and neural architecture search.
+                    </p>
+                </div>
+            </div>
+         </section>
+
+        <footer>
+            <p>&copy; 2025 Junhan Zhu. <br>
+            Designed with simplicity. Last updated: Dec 2025.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const icon = document.querySelector('.theme-toggle i');
+            
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Check system preference or local storage
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.body.setAttribute('data-theme', 'dark');
+            document.querySelector('.theme-toggle i').classList.remove('fa-moon');
+            document.querySelector('.theme-toggle i').classList.add('fa-sun');
+        }
+    </script>
+</body>
+</html>

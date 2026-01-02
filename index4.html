@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM ACCESS: Junhan Zhu | Westlake University</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@300;400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <style>
+        :root {
+            /* Cyberpunk Color Palette */
+            --bg-dark: #050a14;
+            --bg-card: rgba(16, 23, 41, 0.7);
+            --neon-cyan: #00fff2;
+            --neon-blue: #0066ff;
+            --neon-pink: #ff00ff;
+            --text-primary: #e0e6f1;
+            --text-secondary: #8a9bb8;
+            --grid-line: rgba(0, 255, 242, 0.07);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Futuristic Grid Background */
+            background-image: 
+                linear-gradient(rgba(5, 10, 20, 0.95), rgba(5, 10, 20, 0.95)),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(var(--grid-line) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            position: relative;
+        }
+
+        /* Scanline overlay effect */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px);
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        h1, h2, h3, .mono-font {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 8px var(--neon-pink);
+        }
+
+        /* --- Glitch Effect Keyframes --- */
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            10% { transform: skew(-2deg); }
+            20% { transform: skew(2deg); }
+            30% { transform: skew(0deg); }
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Header / Hero Section --- */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            padding-top: 2rem;
+        }
+
+        .cyber-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 242, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 4px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 242, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue), var(--neon-pink));
+            animation: gradient-shift 3s infinite linear;
+            background-size: 200% 100%;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .cyber-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 255, 242, 0.2);
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+        }
+        
+        .avatar-frame {
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px solid var(--neon-cyan);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+        }
+        
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%) contrast(110%);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+            transition: all 0.3s;
+        }
+
+        .avatar-container:hover .avatar-img {
+            filter: grayscale(0%) contrast(100%);
+            animation: glitch-skew 0.5s linear;
+        }
+
+        .identity-name {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--text-primary), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 242, 0.3);
+        }
+
+        .phd-alert-cyber {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 0, 255, 0.1);
+            border: 1px solid var(--neon-pink);
+            color: var(--neon-pink);
+            padding: 0.5rem 1rem;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+            animation: pulse-pink 2s infinite;
+        }
+        
+        @keyframes pulse-pink {
+            0% { box-shadow: 0 0 15px rgba(255, 0, 255, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(255, 0, 255, 0.6); }
+            100% { box-shadow: 0 0 15px rgba(255, 0, 255, 0.3); }
+        }
+
+        /* Terminal Typing Effect */
+        .terminal-text {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background-color: var(--neon-cyan);
+            margin-left: 5px;
+            vertical-align: text-bottom;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+
+        /* --- System Metrics (Stats) --- */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .metric-box {
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+        
+        .metric-label {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* --- Section Headers --- */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-right: 1rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
+        }
+        
+        .header-line {
+            flex-grow: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), transparent);
+        }
+
+        /* --- Publications Logs --- */
+        .pub-log {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 3px solid rgba(0, 255, 242, 0.1);
+            padding-left: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .pub-log:hover {
+            border-left-color: var(--neon-cyan);
+        }
+
+        .pub-thumb-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 255, 242, 0.3);
+        }
+        
+        .pub-thumb {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: saturate(0.8) contrast(1.1);
+            transition: 0.3s;
+        }
+        
+        .pub-log:hover .pub-thumb {
+            transform: scale(1.05);
+            filter: saturate(1.2) contrast(1.1);
+        }
+
+        .pub-thumb-overlay {
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .pub-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .meta-tag {
+            display: inline-block;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            background: rgba(0, 255, 242, 0.1);
+            color: var(--neon-cyan);
+            border: 1px solid var(--neon-cyan);
+            margin-right: 10px;
+            margin-bottom: 0.5rem;
+        }
+        .meta-tag.highlight {
+            background: rgba(255, 0, 255, 0.1);
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
+        }
+
+        .pub-links a {
+            margin-right: 15px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* --- Footer --- */
+        .system-footer {
+            margin-top: 5rem;
+            padding: 2rem;
+            border-top: 1px solid var(--grid-line);
+            text-align: center;
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        .status-light {
+            display: inline-block;
+            width: 10px; height: 10px;
+            background-color: var(--neon-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-cyan);
+            margin-right: 8px;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 850px) {
+            .hero-section { grid-template-columns: 1fr; text-align: center; }
+            .avatar-container { margin: 0 auto 2rem auto; }
+            .pub-log { grid-template-columns: 1fr; border-left: none; padding-left: 0; }
+            .pub-thumb-container { max-width: 100%; }
+            .identity-name { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <section class="hero-section">
+            <div class="bio-interface">
+                <h1 class="identity-name">Junhan Zhu_</h1>
+                <h2 class="mono-font" style="color: var(--text-secondary); margin-bottom: 1.5rem;">[ 诸俊涵 ] // Undergraduate Researcher</h2>
+                
+                <div class="phd-alert-cyber">
+                    <i class="fas fa-exclamation-triangle" style="margin-right: 10px;"></i>
+                    STATUS: SEEKING PHD OPPORTUNITIES (FALL 2027)
+                </div>
+
+                <div class="cyber-card terminal-container">
+                    <p> > INITIATING USER PROFILE SCAN...</p>
+                    <p> > SUBJECT: Junhan Zhu @ Westlake University</p>
+                    <p> > MAJOR: Electronic & Information Engineering</p>
+                    <p> > RESEARCH FOCUS: Computer Vision // Generative AI // Efficient AI</p>
+                    <p> > CURRENT LOCATION: ENCODE Lab (Advisor: Prof. Huan Wang)</p>
+                    <br>
+                    <p class="terminal-text" id="typing-text"></p><span class="cursor"></span>
+                </div>
+
+                <div class="social-links" style="margin-top: 2rem; font-size: 1.5rem; display: flex; gap: 1.5rem;">
+                    <a href="mailto:zhujunhan@westlake.edu.cn"><i class="fas fa-envelope"></i></a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=kWEQRU0AAAAJ" target="_blank"><i class="ai ai-google-scholar"></i></a>
+                    <a href="https://github.com/Alrightlone" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/Alright_lone" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="work/JunhanZhu_CV_v8.pdf" target="_blank"><i class="ai ai-cv"></i></a>
+                </div>
+            </div>
+
+            <div class="avatar-wrapper">
+                <div class="avatar-container">
+                    <div class="avatar-frame"></div>
+                    <img src="images/JunhanZhu2.png" alt="Junhan Zhu Identity Log" class="avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=J+Z&background=00fff2&color=050a14&size=256'">
+                </div>
+            </div>
+        </section>
+
+        <div class="metrics-grid">
+            <div class="cyber-card metric-box">
+                <div class="metric-value">4.04</div>
+                <div class="metric-label">GPA (out of 4.3)</div>
+            </div>
+            <div class="cyber-card metric-box">
+                <div class="metric-value">#1</div>
+                <div class="metric-label">Cohort Rank</div>
+            </div>
+            <div class="cyber-card metric-box">
+                <div class="metric-value">2027</div>
+                <div class="metric-label">Expected Grad Year</div>
+            </div>
+        </div>
+
+
+        <section id="publications">
+            <div class="section-header">
+                <h2 class="section-title">Research Logs // Publications</h2>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="pub-log cyber-card">
+                <div class="pub-thumb-container">
+                    <img src="images/OBS-Diff.jpg" alt="OBS-Diff Data Visualization" class="pub-thumb" onerror="this.src='https://placehold.co/400x300/0066ff/ffffff?text=DATA+LOG+01'">
+                    <div class="pub-thumb-overlay"></div>
+                </div>
+                <div class="pub-content">
+                    <a href="https://arxiv.org/abs/2510.06751" class="pub-title">OBS-Diff: Accurate Pruning For Diffusion Models in One-Shot</a>
+                    <div>
+                        <span class="meta-tag highlight">FIRST AUTHOR</span>
+                        <span class="meta-tag">ARXIV 2025</span>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem;">
+                        Proposed the first training-free, one-shot pruning framework for diffusion models via a novel timestep-aware Hessian construction. Achieved SOTA compression rates.
+                    </p>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2510.06751"><i class="ai ai-arxiv"></i> ACCESS PAPER</a>
+                        <a href="https://github.com/Alrightlone/OBS-Diff"><i class="fab fa-github"></i> SOURCE CODE</a>
+                        <a href="https://alrightlone.github.io/OBS-Diff-Webpage/"><i class="fas fa-globe"></i> PROJECT DATA</a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="pub-log cyber-card">
+                <div class="pub-thumb-container">
+                    <img src="images/prime.jpg" alt="CR-Diff Data Visualization" class="pub-thumb" onerror="this.src='https://placehold.co/400x300/ff00ff/ffffff?text=DATA+LOG+02'">
+                </div>
+                <div class="pub-content">
+                    <span class="pub-title">Cross-Resolution Diffusion Models via Network Pruning</span>
+                    <div>
+                         <span class="meta-tag highlight">CO-FIRST AUTHOR</span>
+                        <span class="meta-tag">UNDER REVIEW</span>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem;">
+                        Introduced CR-Diff, repurposing network pruning to "purify" models by removing adverse weights causing degradation at non-default resolutions.
+                    </p>
+                </div>
+            </div>
+
+             <div class="pub-log cyber-card">
+                <div class="pub-thumb-container">
+                   <img src="images/SparAlloc.jpg" alt="SparAlloc Data" class="pub-thumb" onerror="this.src='https://placehold.co/400x300/00fff2/000000?text=TOOLKIT+DATA'">
+                </div>
+                <div class="pub-content">
+                    <a href="https://github.com/Alrightlone/SparAlloc" class="pub-title">SparAlloc: Modular Framework for LLM Sparsity Allocation</a>
+                    <div>
+                        <span class="meta-tag">OPEN SOURCE TOOLKIT</span>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem;">
+                        Developed a modular benchmark toolkit for decoupled sparsity allocation in LLM pruning, enabling fair algorithm comparison.
+                    </p>
+                     <div class="pub-links">
+                        <a href="https://github.com/Alrightlone/SparAlloc"><i class="fab fa-github"></i> ACCESS TOOLKIT</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+             <div class="section-header">
+                <h2 class="section-title">System Acknowledgements // Honors</h2>
+                <div class="header-line"></div>
+            </div>
+            <div class="cyber-card">
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 1rem; border-bottom: 1px solid var(--grid-line); padding-bottom: 0.5rem;">
+                        <span class="mono-font" style="color: var(--neon-cyan)">[2025]</span> <strong style="color: var(--text-primary); font-size: 1.1rem;">Outstanding Bachelor's Student</strong>
+                    </li>
+                     <li style="margin-bottom: 1rem; border-bottom: 1px solid var(--grid-line); padding-bottom: 0.5rem;">
+                        <span class="mono-font" style="color: var(--neon-cyan)">[2024-25]</span> <strong>Outstanding Undergraduate Scholarship</strong> <span class="mono-font" style="color: var(--text-secondary)">(Top Merit)</span>
+                    </li>
+                    <li>
+                        <span class="mono-font" style="color: var(--neon-cyan)">[2024-25]</span> <strong>Innovation Award</strong>
+                    </li>
+                </ul>
+            </div>
+         </section>
+
+
+        <footer class="system-footer">
+            <p><span class="status-light"></span>SYSTEM STATUS: ONLINE // ACADEMIC PROFILE LOADED SUCCESSFULLY.</p>
+            <p>© 2025 JUNHAN ZHU // END OF TRANSMISSION.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const textToType = "> BIO_SUMMARY: I am deeply interested in making AI efficient and accessible. My work focuses on understanding and compressing large-scale foundational models (Diffusion/LLMs) without compromising their generative capabilities.\n\n> PERSONAL_NOTE: I maintain a tech blog 'Lonely Zone' and am always open to academic collaborations.";
+        const typingElement = document.getElementById('typing-text');
+        let index = 0;
+
+        function typeWriter() {
+            if (index < textToType.length) {
+                typingElement.textContent += textToType.charAt(index);
+                index++;
+                setTimeout(typeWriter, 30); // Adjust typing speed here
+            } else {
+                // Blinking cursor continues after typing
+            }
+        }
+
+        // Start typing after a short delay for dramatic effect
+        setTimeout(typeWriter, 1000);
+    </script>
+</body>
+</html>

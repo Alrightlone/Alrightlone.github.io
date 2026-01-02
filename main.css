@@ -2161,3 +2161,29 @@ div.paginate-container li:nth-last-child(2) a:after {
 .news-container::-webkit-scrollbar-thumb:hover {
     background: #aaa; 
 }
+
+/* 基础标签样式 */
+.news-badge {
+    display: inline-block;
+    padding: 1px 6px;       /* 内部留白 */
+    border-radius: 4px;     /* 圆角 */
+    font-size: 0.85em;      /* 字体稍微小一点 */
+    font-weight: bold;      /* 字体加粗 */
+    margin-right: 5px;      /* 右边和正文保持距离 */
+    vertical-align: text-bottom; /* 对齐微调 */
+    text-transform: uppercase; /* 自动转大写（可选） */
+}
+
+/* [Release] 专用配色：活力橙（适合 HuggingFace/发布） */
+.badge-release {
+    background-color: #fff3e0;  /* 浅橙色背景 */
+    color: #e65100;             /* 深橙色文字 */
+    border: 1px solid #ffe0b2;  /* 橙色细边框 */
+}
+
+/* [Blog] 专用配色：科技紫（备用） */
+.badge-blog {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+    border: 1px solid #e1bee7;
+}
