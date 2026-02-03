@@ -2187,3 +2187,96 @@ div.paginate-container li:nth-last-child(2) a:after {
     color: #7b1fa2;
     border: 1px solid #e1bee7;
 }
+
+/* 微信图标的基础颜色配置 */
+.icon-button .icon-wechat {
+    color: #07c160; /* 微信官方绿 */
+}
+.wechat span {
+    background-color: #07c160; /* 悬停时的背景圆圈颜色 */
+}
+.icon-button:hover .icon-wechat {
+    color: white;
+}
+
+/* 容器设置：为了定位二维码 */
+.wechat-container {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle; /* 保证和其他图标对齐 */
+}
+
+/* 二维码弹窗样式 */
+.wechat-dropdown {
+    display: none; /* 默认隐藏 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 120%; /* 显示在图标下方 */
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    width: 150px; /* 二维码容器宽度 */
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+/* 二维码图片样式 */
+.wechat-dropdown img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+/* 提示文字样式 */
+.wechat-dropdown p {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* 一个上面指向图标的小三角形（可选，增加美观度） */
+.wechat-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}
+
+/* 鼠标悬停时显示二维码 */
+.wechat-container:hover .wechat-dropdown {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+/* 简单的淡入动画 */
+@keyframes fadeIn {
+    from { opacity: 0; margin-top: 10px; }
+    to { opacity: 1; margin-top: 0; }
+}
+
+/* --- Google Scholar 修复版 --- */
+
+/* 1. 强制图标颜色为 Google 蓝 (#4285F4) */
+/* 注意：这里加了 !important 确保它不会被变成白色 */
+.google-scholar-btn .icon-scholar {
+    color: #4285F4 !important; 
+}
+
+/* 2. 鼠标悬停时的背景圆圈颜色 */
+.google-scholar-btn span {
+    background-color: #4285F4; 
+}
+
+/* 3. 鼠标悬停时，图标变回白色（这样才看得清） */
+.google-scholar-btn:hover .icon-scholar {
+    color: #ffffff !important;
+}
