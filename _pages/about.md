@@ -6,7 +6,7 @@ subtitle: Junior Undergraduate from <a href='https://www.westlake.edu.cn/'>Westl
 
 profile:
   align: right
-  image: JunhanZhu.png
+  image: JunhanZhu.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p style="font-size:0.8em;">Efficiency isn't about doing less — it's about understanding more.</p>
