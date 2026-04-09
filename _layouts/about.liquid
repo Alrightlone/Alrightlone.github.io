@@ -43,7 +43,7 @@ layout: default
     <!-- News -->
     {% if page.announcements and page.announcements.enabled %}
       <h2>
-        <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
+        <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
       </h2>
       {% include news.liquid limit=true %}
     {% endif %}
@@ -51,7 +51,7 @@ layout: default
     <!-- Latest posts -->
     {% if page.latest_posts and page.latest_posts.enabled %}
       <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
+        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">Latest Posts</a>
       </h2>
       {% include latest_posts.liquid %}
     {% endif %}
@@ -59,10 +59,94 @@ layout: default
     <!-- Selected papers -->
     {% if page.selected_papers %}
       <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
+        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Selected Publications</a>
       </h2>
       {% include selected_papers.liquid %}
     {% endif %}
+
+    <!-- Selected projects -->
+    {% if page.selected_projects %}
+      <h2>Selected Projects</h2>
+      <div class="publications">
+        <ol class="bibliography">
+          {% for project in page.selected_projects %}
+          <li>
+            <div class="row">
+              <div class="col col-sm-3 abbr">
+                {% if project.abbr %}
+                  <abbr class="badge rounded w-100">{{ project.abbr }}</abbr>
+                {% endif %}
+                {% if project.preview %}
+                  {% assign proj_preview_path = project.preview | prepend: '/assets/img/publication_preview/' %}
+                  {%
+                    include figure.liquid
+                    loading="eager"
+                    path=proj_preview_path
+                    sizes="200px"
+                    class="preview z-depth-1 rounded"
+                    zoomable=true
+                    avoid_scaling=true
+                    alt=project.title
+                  %}
+                {% endif %}
+              </div>
+              <div id="{{ project.id }}" class="col-sm-8">
+                <div class="title">{{ project.title }}</div>
+                <div class="periodical">
+                  <em>{{ project.venue }}</em>
+                </div>
+                <div class="links">
+                  {% if project.code %}
+                    <a href="{{ project.code }}" class="btn btn-sm z-depth-0" role="button">Code</a>
+                  {% endif %}
+                  {% if project.html %}
+                    <a href="{{ project.html }}" class="btn btn-sm z-depth-0" role="button">HTML</a>
+                  {% endif %}
+                </div>
+                {% if project.description %}
+                  <div class="abstract">
+                    <p>{{ project.description }}</p>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+    {% endif %}
+
+    <!-- Honors & Awards -->
+    {% if page.honors %}
+      <h2>Selected Honors & Awards</h2>
+      <table style="width:100%; border:0; border-spacing:0; border-collapse:separate;">
+        <tbody>
+          {% for honor in page.honors %}
+          <tr>
+            <td style="padding-bottom:8px; width:15%; vertical-align:top;">
+              <strong>{{ honor.year }}</strong>
+            </td>
+            <td style="padding-bottom:8px; vertical-align:top;">
+              <strong>{{ honor.title }}</strong>, {{ honor.description }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+
+    <!-- Academic Services -->
+    {% if page.academic_services %}
+      <h2>Academic Services</h2>
+      <p><strong>Journal Reviewer:</strong> TPAMI (IEEE Transactions on Pattern Analysis and Machine Intelligence)</p>
+    {% endif %}
+
+    <!-- Visitor Map -->
+    <div style="display:flex; justify-content:center; margin:30px 0;">
+      <a href="https://mapmyvisitors.com/web/1bzta" title="Visit tracker">
+        <img src="https://mapmyvisitors.com/map.png?d=cXWOnIge9HxzWHbzq9ZPOZpgnsf5FZAbkn6aRUOs2Cc&cl=ffffff" alt="Visitor Map" style="max-width:300px;" />
+      </a>
+    </div>
 
     <!-- Social -->
     {% if page.social %}

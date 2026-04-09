@@ -1,34 +1,61 @@
-"adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+"wang":
+  - firstname: ["Hesong"]
+    url: https://viridisgreen.github.io/
 
-"podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
+  - firstname: ["Huan"]
+    url: https://huanwang.tech/
 
-"rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
+  - firstname: ["Zefang"]
+    url: https://github.com/aden9460
 
-"bach":
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+"su":
+  - firstname: ["Mingluo"]
+    url: https://mingluo-su.github.io/
 
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+"ren":
+  - firstname: ["Jiaxuan*"]
+    url: https://xuan9-9.github.io/
 
-"przibram":
-  - firstname: ["Karl"]
-    url: https://link.springer.com/article/10.1007/s00016-019-00242-z
+"tao":
+  - firstname: ["Keda"]
+    url: https://kd-tao.github.io/
 
-"schrodinger":
-  - firstname: ["Erwin"]
-    url: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
+"zheng":
+  - firstname: ["Yuhua"]
+    url: https://pillor9.github.io/
 
-"lorentz":
-  - firstname: ["Hendrik Antoon"]
-    url: https://en.wikipedia.org/wiki/Hendrik_Lorentz
+"xu":
+  - firstname: ["Jia"]
+    url: https://jiaxu0123.github.io/jiaxu/
 
-"planck":
-  - firstname: ["Max"]
-    url: https://en.wikipedia.org/wiki/Max_Planck
+"du":
+  - firstname: ["Wenjie"]
+    url: https://kurt232.github.io/
+
+"shao":
+  - firstname: ["Kele"]
+    url: https://cokeshao.github.io/
+
+"chen":
+  - firstname: ["Xueyi"]
+    url: https://yige24.github.io/
+
+"jin":
+  - firstname: ["Xin"]
+    url: https://jinxins.github.io
+
+"qin":
+  - firstname: ["Can"]
+    url: https://canqin.tech/
+
+"zhang":
+  - firstname: ["Yulun"]
+    url: https://yulunzhang.com/
+
+"yang":
+  - firstname: ["Ming-Hsuan"]
+    url: https://faculty.ucmerced.edu/mhyang/
+
+"liu":
+  - firstname: ["Ziwei"]
+    url: https://liuziwei7.github.io/
