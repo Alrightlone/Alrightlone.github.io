@@ -1,0 +1,1 @@
+$(document).ready(function(){CodeMirror.fromTextArea(document.getElementById("bibtex"),{lineNumbers:!1,lineWrapping:!0,readOnly:!0});$(function(){$('[data-toggle="tooltip"]').tooltip()})});
