@@ -10,8 +10,8 @@
   --global-code-bg-color: #{v.$code-bg-color-light};
   --global-text-color: #{v.$black-color};
   --global-text-color-light: #{v.$grey-color};
-  --global-theme-color: #116d88;
-  --global-hover-color: #116d88;
+  --global-theme-color: #{v.$purple-color};
+  --global-hover-color: #{v.$purple-color};
   --global-hover-text-color: #{v.$white-color};
   --global-footer-bg-color: #{v.$grey-color-dark};
   --global-footer-text-color: #{v.$grey-color-light};
