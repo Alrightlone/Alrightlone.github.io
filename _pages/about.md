@@ -90,8 +90,7 @@ I am actively seeking 27 Fall PhD opportunities!
     B.Eng in Electronic and Information Engineering · Jul. 2023 – Present (Expected 2027)<br>
     <span style="font-size:0.9em; font-style:italic; color:#555;">Admitted by skipping the final year of high school.</span><br>
     <span style="color:#d9534f; font-weight:bold; background-color:#f9f2f4; padding:2px 5px; border-radius:4px;">GPA: 4.04 / 4.3</span>
-    <span style="margin-left:8px; color:#337ab7; font-weight:bold; background-color:#f0f7fd; padding:2px 5px; border-radius:4px;">Rank: 2 / 23</span>
-    <a href="/assets/pdf/CV_JunhanZhu.pdf" style="margin-left:8px; text-decoration:none; color:#2e7d32; background-color:#e8f5e9; padding:2px 6px; border-radius:4px; font-size:0.9em; font-weight:bold; border:1px solid rgba(46,125,50,0.2);">📄 Transcript</a><br>
+    <span style="margin-left:8px; color:#337ab7; font-weight:bold; background-color:#f0f7fd; padding:2px 5px; border-radius:4px;">Rank: 1 / 23</span><br>
     <span style="font-size:0.9em; color:#555;">Research Interests: Computer Vision, Generative AI, Efficient AI</span>
   </div>
 </div>
