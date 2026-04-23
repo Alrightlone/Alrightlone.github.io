@@ -54,7 +54,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hi! My name is Junhan Zhu (诸俊涵). I am a 3rd year undergraduate student at [Westlake University](https://www.westlake.edu.cn/), majoring in Electrical and Information Engineering. I am currently a visiting student at [MMLab@NTU](https://www.mmlab-ntu.com/), advised by [Prof. Ziwei Liu](https://liuziwei7.github.io/), and closely collaborating with [Prof. Huan Wang](https://huanwang.tech/). My research interests include **Computer Vision**, **Generative AI**, and **Efficient AI**, especially in the area of **model compression and acceleration**.
+Hi! My name is Junhan Zhu (诸俊涵). I am a 3rd year undergraduate student at [Westlake University](https://www.westlake.edu.cn/), majoring in Electrical and Information Engineering. I am currently a visiting student at [MMLab@NTU](https://www.mmlab-ntu.com/), advised by [Prof. Ziwei Liu](https://liuziwei7.github.io/), and closely collaborating with [Prof. Huan Wang](https://huanwang.tech/) from [ENCODE Lab](https://westlake-encode-lab.github.io/) at Westlake University. My research interests include **Computer Vision**, **Generative AI**, and **Efficient AI**, especially in the area of **model compression and acceleration**.
 
 I will share my research and personal thoughts on my blog, **"Lonely Zone"**. Check it out here for my latest updates and thoughts! [[Lonely Zone]](https://alrightlone.github.io/Lonely-Zone/)
 
@@ -89,8 +89,7 @@ I am actively seeking 27 Fall PhD opportunities!
     <strong><a href="https://www.westlake.edu.cn/">Westlake University</a></strong><br>
     B.Eng in Electronic and Information Engineering · Jul. 2023 – Present (Expected 2027)<br>
     <span style="font-size:0.9em; font-style:italic; color:#555;">Admitted by skipping the final year of high school.</span><br>
-    <span style="color:#d9534f; font-weight:bold; background-color:#f9f2f4; padding:2px 5px; border-radius:4px;">GPA: 4.04 / 4.3</span>
-    <span style="margin-left:8px; color:#337ab7; font-weight:bold; background-color:#f0f7fd; padding:2px 5px; border-radius:4px;">Rank: 1 / 23</span><br>
+    <span style="color:#337ab7; font-weight:bold; background-color:#f0f7fd; padding:2px 5px; border-radius:4px;">Rank: 1 / 23</span><br>
     <span style="font-size:0.9em; color:#555;">Research Interests: Computer Vision, Generative AI, Efficient AI</span>
   </div>
 </div>
