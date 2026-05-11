@@ -22,7 +22,7 @@ cv:
         area: Exchange Student
         studyType: Exchange
         start_date: 2026-01
-        end_date: 2026-06
+        end_date: 2026-04
         highlights:
           - "Exchange student at Nanyang Technological University."
           - "Research Interests: Computer Vision, Efficient AI, World Model"
@@ -40,12 +40,23 @@ cv:
           - "Research Interests: Computer Vision, Generative AI, Efficient AI"
 
     Experience:
+      - company: Duke University
+        position: Research Intern
+        location: Durham, NC, USA
+        url: https://ece.duke.edu/
+        start_date: 2026-05
+        end_date: Present
+        summary: "Supervised by Prof. Yiran Chen; working closely with Zishan Shao"
+        highlights:
+          - Efficient AI
+          - Computer Vision
+
       - company: MMLab@NTU
         position: Visiting Student
         location: Nanyang Technological University, Singapore
         url: https://www.mmlab-ntu.com/
         start_date: 2026-01
-        end_date: Present
+        end_date: 2026-04
         summary: "Supervised by Associate Prof. Ziwei Liu"
         highlights:
           - Computer Vision

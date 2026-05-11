@@ -54,7 +54,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hi! My name is Junhan Zhu (诸俊涵). I am a 3rd year undergraduate student at [Westlake University](https://www.westlake.edu.cn/), majoring in Electrical and Information Engineering. I am currently a visiting student at [MMLab@NTU](https://www.mmlab-ntu.com/), advised by [Prof. Ziwei Liu](https://liuziwei7.github.io/), and closely collaborating with [Prof. Huan Wang](https://huanwang.tech/) from [ENCODE Lab](https://westlake-encode-lab.github.io/) at Westlake University. My research interests include **Computer Vision**, **Generative AI**, and **Efficient AI**, especially in the area of **model compression and acceleration**.
+Hi! My name is Junhan Zhu (诸俊涵). I am a 3rd year undergraduate student at [Westlake University](https://www.westlake.edu.cn/), majoring in Electrical and Information Engineering. I am currently a research intern at [Duke University](https://ece.duke.edu/), advised by [Prof. Yiran Chen](https://ece.duke.edu/faculty/yiran-chen) and working closely with [Zishan Shao](https://zishan-shao.github.io/). Previously, I was a visiting student at [MMLab@NTU](https://www.mmlab-ntu.com/) advised by [Prof. Ziwei Liu](https://liuziwei7.github.io/), and a visiting student at [ENCODE Lab](https://westlake-encode-lab.github.io/), Westlake University, supervised by [Prof. Huan Wang](https://huanwang.tech/). My research interests include **Computer Vision**, **Generative AI**, and **Efficient AI**, especially in the area of **model compression and acceleration**.
 
 I will share my research and personal thoughts on my blog, **"Lonely Zone"**. Check it out here for my latest updates and thoughts! [[Lonely Zone]](https://alrightlone.github.io/Lonely-Zone/)
 
@@ -76,7 +76,7 @@ I am actively seeking 27 Fall PhD opportunities!
   </div>
   <div>
     <strong><a href="https://www.ntu.edu.sg/">Nanyang Technological University</a></strong><br>
-    Exchange Student · Jan. 2026 – Jun. 2026<br>
+    Exchange Student · Jan. 2026 – Apr. 2026<br>
     <span style="font-size:0.9em; color:#555;">Research Interests: Computer Vision, Efficient AI, World Model</span>
   </div>
 </div>
@@ -98,11 +98,22 @@ I am actively seeking 27 Fall PhD opportunities!
 
 <div style="display:flex; align-items:center; margin-bottom:20px;">
   <div style="flex:0 0 80px; margin-right:16px;">
+    <img src="/assets/img/Duke.png" alt="Duke" style="width:80px; height:80px; object-fit:contain; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); background:#fff; padding:4px;">
+  </div>
+  <div>
+    <strong>Research Intern @ <a href="https://ece.duke.edu/">Duke University</a></strong><br>
+    May 2026 – Present<br>
+    <span style="font-size:0.9em; color:#555;">Supervisor: <a href="https://ece.duke.edu/faculty/yiran-chen">Prof. Yiran Chen</a> · Close collaborator: <a href="https://zishan-shao.github.io/">Zishan Shao</a></span>
+  </div>
+</div>
+
+<div style="display:flex; align-items:center; margin-bottom:20px;">
+  <div style="flex:0 0 80px; margin-right:16px;">
     <img src="/assets/img/NTU.png" alt="NTU" style="width:80px; height:80px; object-fit:contain; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); background:#fff; padding:4px;">
   </div>
   <div>
     <strong>Visiting Student @ <a href="https://www.mmlab-ntu.com/">MMLab@NTU</a></strong><br>
-    Jan. 2026 – Present<br>
+    Jan. 2026 – Apr. 2026<br>
     <span style="font-size:0.9em; color:#555;">Supervisor: <a href="https://liuziwei7.github.io/">Associate Prof. Ziwei Liu</a></span>
   </div>
 </div>
@@ -117,5 +128,3 @@ I am actively seeking 27 Fall PhD opportunities!
     <span style="font-size:0.9em; color:#555;">Supervisor: <a href="https://huanwang.tech/">Assistant Prof. Huan Wang</a></span>
   </div>
 </div>
-
-
