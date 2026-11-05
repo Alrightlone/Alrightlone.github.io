@@ -144,8 +144,11 @@ strong {
 }
 
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.97);
+  background: var(--page);
 }
 
 .site-header__inner {
@@ -172,11 +175,27 @@ strong {
 
 .site-nav {
   display: flex;
+  flex: 1;
+  min-width: 0;
   align-items: center;
-  justify-content: flex-end;
-  gap: clamp(1rem, 3vw, 1.6rem);
-  font-size: 0.875rem;
+  justify-content: space-between;
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+  overflow-x: auto;
+  padding: 0.35rem 3px;
+  font-size: 0.9375rem;
   white-space: nowrap;
+}
+
+.site-nav a {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  min-height: 44px;
+}
+
+.profile-intro,
+.home-section {
+  scroll-margin-top: 6rem;
 }
 
 .profile-intro {
@@ -262,7 +281,6 @@ strong {
 .home-section {
   padding: clamp(1.5rem, 3vw, 2rem) 0;
   border-top: 1px solid var(--line);
-  scroll-margin-top: 1.5rem;
 }
 
 .home-section > h2 {
@@ -493,7 +511,8 @@ strong {
 
   .site-header__inner {
     display: block;
-    padding: 0.9rem 0 0.8rem;
+    min-height: 0;
+    padding: 0.25rem 0;
   }
 
   .site-title {
@@ -503,8 +522,7 @@ strong {
 
   .site-nav {
     justify-content: flex-start;
-    overflow-x: auto;
-    padding-bottom: 0.15rem;
+    padding-block: 0.25rem;
   }
 
   .profile-intro {
